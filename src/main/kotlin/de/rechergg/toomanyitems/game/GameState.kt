@@ -4,7 +4,6 @@ enum class GameState {
     PREPARING_WORLD,
     WAITING,
     STARTING,
-    SPREADING,
     PLAYING,
     ENDED
 }

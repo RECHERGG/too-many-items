@@ -1,9 +1,10 @@
+import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
+
 plugins {
     kotlin("jvm") version "1.9.23"
     alias(libs.plugins.userdev)
     alias(libs.plugins.run.paper)
     alias(libs.plugins.bukkit)
-    alias(libs.plugins.shadow)
 }
 
 group = "de.rechergg"
@@ -15,9 +16,9 @@ paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArt
 dependencies {
     paperweight.paperDevBundle("1.20.6-R0.1-SNAPSHOT")
     library(kotlin("stdlib"))
-    implementation(libs.kspigot)
-    implementation(libs.commandapi.bukkit.shade)
-    implementation(libs.commandapi.bukkit.kotlin)
+    library(libs.kspigot)
+    library(libs.commandapi.bukkit.shade)
+    library(libs.commandapi.bukkit.kotlin)
 }
 
 kotlin {
@@ -26,6 +27,7 @@ kotlin {
 
 bukkit {
     name = "TooManyItems"
+    load = BukkitPluginDescription.PluginLoadOrder.POSTWORLD
     description = getDescription()
     apiVersion = "1.16"
     author = "RECHERGG"

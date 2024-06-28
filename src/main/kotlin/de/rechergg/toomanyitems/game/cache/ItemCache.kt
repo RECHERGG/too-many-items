@@ -1,15 +1,40 @@
 package de.rechergg.toomanyitems.game.cache
 
+import de.rechergg.toomanyitems.game.GameManager.obtainedKey
+import net.axay.kspigot.items.itemStack
+import net.axay.kspigot.items.meta
 import org.bukkit.Material
 import org.bukkit.entity.Player
-import org.bukkit.inventory.ItemStack
+import org.bukkit.persistence.PersistentDataType
 
 object ItemCache {
 
-    val axe = ItemStack(Material.IRON_AXE)
-    val pickaxe = ItemStack(Material.IRON_PICKAXE)
-    val shovel = ItemStack(Material.IRON_SHOVEL)
-    val hoe = ItemStack(Material.IRON_HOE)
+    private val axe = itemStack(Material.IRON_AXE) {
+        meta {
+            persistentDataContainer.set(obtainedKey, PersistentDataType.BOOLEAN, true)
+            isUnbreakable = true
+        }
+    }
+    private val pickaxe = itemStack(Material.IRON_PICKAXE) {
+        meta {
+            persistentDataContainer.set(obtainedKey, PersistentDataType.BOOLEAN, true)
+            isUnbreakable = true
+        }
+    }
+    private val shovel = itemStack(Material.IRON_SHOVEL) {
+        meta {
+            persistentDataContainer.set(obtainedKey, PersistentDataType.BOOLEAN, true)
+            isUnbreakable = true
+        }
+    }
+    private val hoe = itemStack(Material.IRON_HOE) {
+        meta {
+            persistentDataContainer.set(obtainedKey, PersistentDataType.BOOLEAN, true)
+            isUnbreakable = true
+        }
+    }
+
+    val items = setOf(axe, pickaxe, shovel, hoe)
 
     fun addItems(player: Player) {
         player.apply {
@@ -21,12 +46,7 @@ object ItemCache {
     }
 
     fun removeItems(player: Player) {
-        player.apply {
-            inventory.remove(axe)
-            inventory.remove(pickaxe)
-            inventory.remove(shovel)
-            inventory.remove(hoe)
-        }
+        player.inventory.clear()
     }
 
 }
